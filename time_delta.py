@@ -1,26 +1,33 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import time
-  
+"""Python version 3.7+"""
+
+
 class TimeDelta:
+    """time interval measurement"""
+
+    @staticmethod
+    def get_time() -> int:
+        """return time in nanosecond"""
+        return time.process_time_ns()
+
     def __init__(self):
-        self.start = time.process_time_ns()
-        self.delta = 0
+        self.start = TimeDelta.get_time()
+
     def start(self):
-        self.__init__(self)
-    def stop(self):
-        self.delta = time.process_time_ns() - self.start
-        return self.delta
-    # return delta time is second
-    def get_delta(self):
-        return self.delta / 1000000000.0
+        """call start before measurement"""
+        self.__init__()
+
+    def stop(self) -> int:
+        """return delta time in nanosecond"""
+        return TimeDelta.get_time() - self.start
 
 
-if __name__ == "__main__":
-    N = 50 
+if "__main__" == __name__:
+    N = 1000
     TD = TimeDelta()
-    for i in range(N): 
-        print(i, end =' ') 
-    TD.stop()
+    for i in range(N):
+        print(i, end=' ')
+    print("\n")
     #
-    print("Elapsed time during the whole program in seconds:", TD.get_delta())
-
+    print(f"Execution time of {N} iterations of the loop in nanoseconds: {TD.stop()}")
