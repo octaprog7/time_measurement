@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 import time
-"""Python version 3.7+"""
+from sys import version_info
+"""
+Time interval measurement tools.
+Python version 3.7+!
+"""
+
+assert version_info >= (3, 7)
 
 
 class TimeDelta:
@@ -24,7 +30,7 @@ class TimeDelta:
 
 
 if "__main__" == __name__:
-    N = 1000
+    N = 1_000_000
     TD = TimeDelta()
     for i in range(N):
         print(i, end=' ')
